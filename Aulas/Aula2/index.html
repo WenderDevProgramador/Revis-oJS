@@ -9,6 +9,7 @@
 
     </script>
     <style>
+        /* Reset básico e fonte padrão */
         * {
             padding: 0;
             margin: 0;
@@ -16,8 +17,19 @@
             font-family: Arial, Helvetica, sans-serif;
         }
 
+        :root {
+            --primary-dark: #1a1a1a;
+            --primary-hover: aquamarine;
+            --vermelho: rgba(255, 0, 0, 0.5);
+            --vermelho-hover: #ff0000;
+            --verde: rgba(0, 128, 0, 0.47);
+            --verde-hover: #008000;
+            --text-light: #fff;
+            --text-dark: #000;
+        }
+
+        /* Layout geral */
         body {
-            
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -26,73 +38,79 @@
             padding: 1rem;
         }
 
+        /* Container principal */
         main {
-            height: 100vh;
-            width: 85%;
+            width: 100%;
+            max-width: 960px;
+            min-height: 80vh;
+            margin: 0.5rem;
+            padding: 1rem;
+            background-color: rgba(211, 211, 211, 0.78);
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.46), -2px -2px 5px rgba(0, 0, 0, 0.46);
             display: flex;
-            margin: .5rem;
             flex-direction: column;
-            justify-content: center;
-            padding: .5rem;
             align-items: center;
-            background-color: rgba(211, 211, 211, 0.781);
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.466), -2px -2px 5px rgba(0, 0, 0, 0.466);;
+            justify-content: center;
+            border-radius: 10px;
         }
 
-        hr {
-            border: solid 1px black;
-            width: 80%;
-            margin-bottom: 5px;
-        }
-
-        button {
-            padding: 5px;
-            border-radius: 5px;
-            margin: 5px;
-            font-weight: bold;
-            border: none;
-            background-color: #1a1a1ada;
-            color: #fff;
-            cursor: pointer;
-            transition: 1s;
-        }
-
-        button:hover {
-            background-color: aquamarine;
-            color: black;
-            border: solid;
-        }
-
+        /* Tipografia e espaçamento */
         h1,
         p,
         button {
             margin-bottom: 1rem;
         }
 
+        hr {
+            border: 1px solid black;
+            width: 80%;
+            margin-bottom: 5px;
+        }
+
+        /* Botões gerais */
+        button {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            border: none;
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.4s, color 0.4s, transform 0.3s;
+        }
+
+        button:hover {
+            background-color: var(--primary-hover);
+            color: var(--text-dark);
+            transform: scale(1.05);
+        }
+
+        /* Botões com classes personalizadas */
         .Vermelho {
-            background-color: rgba(255, 0, 0, 0.5);
-            transition: 1s;
+            background-color: var(--vermelho);
+            color: var(--text-dark);
         }
 
         .Vermelho:hover {
-            background-color: #ff0000;
-            transition: 1s;
+            background-color: var(--vermelho-hover);
+            color: var(--text-light);
         }
 
         .Verde {
-            background-color: #00800077;
-            transition: 1s;
+            background-color: var(--verde);
+            color: var(--text-dark);
         }
 
         .Verde:hover {
-            background-color: #008000;
-            transition: 1s;
+            background-color: var(--verde-hover);
+            color: var(--text-light);
         }
     </style>
 </head>
 
-<body><main>
-    
+<body>
+    <main>
+
         <h1>
             Estrutura de programação
         </h1>
@@ -100,12 +118,12 @@
             Clique para ver
         </button>
         <hr>
-    
+
         <p><strong>Math</strong> é um objeto que possui diversas funções para fins matemáticos </p>
         <p><strong>Console</strong> varios metodos podem ser usados error, log etc</p>
-    
+
         <hr>
-    
+
         <p><strong>Estruturas de controle:</strong></p>
         <p><strong>if e else</strong></p>
         <div>
@@ -116,20 +134,20 @@
                 Green
             </button>
         </div>
-    
+
         <p><strong>else if</strong></p>
         <hr>
-    
+
         <p><strong>Estrutura de repetição:</strong></p>
-    
+
         <p><strong>for, while e do while:</strong></p>
-    
+
         <p><strong>Importancia da identação:</strong></p>
-    
+
         <p><strong>Finalizar loop com break e continue para manter o loop em alguma sequencia definida</strong></p>
-    
+
         <p><strong>switch melhor para organizar quando se tem muitos if e else</strong></p>
-    
+
         <hr>
         <p><strong>Funções:</strong></p>
         <p>* Escopo aninhado</p>
@@ -141,7 +159,7 @@
 
         <p><strong>Arrays e Objetos</strong></p>
 
-</main>
+    </main>
 
 
 
