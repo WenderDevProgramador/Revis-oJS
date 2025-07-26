@@ -17,12 +17,32 @@
         }
 
         body {
-            height: 100vh;
+            
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             background-color: lightgrey;
+            padding: 1rem;
+        }
+
+        main {
+            height: 100vh;
+            width: 85%;
+            display: flex;
+            margin: .5rem;
+            flex-direction: column;
+            justify-content: center;
+            padding: .5rem;
+            align-items: center;
+            background-color: rgba(211, 211, 211, 0.781);
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.466), -2px -2px 5px rgba(0, 0, 0, 0.466);;
+        }
+
+        hr {
+            border: solid 1px black;
+            width: 80%;
+            margin-bottom: 5px;
         }
 
         button {
@@ -43,24 +63,87 @@
             border: solid;
         }
 
-        h1, p, button{
+        h1,
+        p,
+        button {
             margin-bottom: 1rem;
         }
 
+        .Vermelho {
+            background-color: rgba(255, 0, 0, 0.5);
+            transition: 1s;
+        }
 
+        .Vermelho:hover {
+            background-color: #ff0000;
+            transition: 1s;
+        }
+
+        .Verde {
+            background-color: #00800077;
+            transition: 1s;
+        }
+
+        .Verde:hover {
+            background-color: #008000;
+            transition: 1s;
+        }
     </style>
 </head>
 
-<body>
-    <h1>
-        Estrutura de programação
-    </h1>
-    <button type="button" onclick=handleClick()>
-        Clique para ver
-    </button> 
+<body><main>
+    
+        <h1>
+            Estrutura de programação
+        </h1>
+        <button type="button" onclick=handleClick(this)>
+            Clique para ver
+        </button>
+        <hr>
+    
+        <p><strong>Math</strong> é um objeto que possui diversas funções para fins matemáticos </p>
+        <p><strong>Console</strong> varios metodos podem ser usados error, log etc</p>
+    
+        <hr>
+    
+        <p><strong>Estruturas de controle:</strong></p>
+        <p><strong>if e else</strong></p>
+        <div>
+            <button class="Vermelho" onclick=handleClick(this)>
+                Red
+            </button>
+            <button class="Verde" onclick=handleClick(this)>
+                Green
+            </button>
+        </div>
+    
+        <p><strong>else if</strong></p>
+        <hr>
+    
+        <p><strong>Estrutura de repetição:</strong></p>
+    
+        <p><strong>for, while e do while:</strong></p>
+    
+        <p><strong>Importancia da identação:</strong></p>
+    
+        <p><strong>Finalizar loop com break e continue para manter o loop em alguma sequencia definida</strong></p>
+    
+        <p><strong>switch melhor para organizar quando se tem muitos if e else</strong></p>
+    
+        <hr>
+        <p><strong>Funções:</strong></p>
+        <p>* Escopo aninhado</p>
+        <p>* Arrow function</p>
+        <p>* Closure </p>
+        <p>* Recursão</p>
 
-    <p><strong>Math</strong> é um objeto que possui diversas funções para fins matemáticos </p>
-    <p><strong>Console</strong> varios metodos podem ser usados error, log etc</p>
+        <hr>
+
+        <p><strong>Arrays e Objetos</strong></p>
+
+</main>
+
+
 
 
 </body>
