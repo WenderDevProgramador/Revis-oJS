@@ -266,3 +266,90 @@ console.log(frase)
 
 const fraseJoin = frase.join(' ')
 console.log(fraseJoin)
+
+
+//repeat
+
+const palavra =  'Testando  '
+
+console.log(palavra.repeat(10))
+
+// rest operator 
+
+const somaInfinita = (...args) => {
+    let tot = 0
+
+    for(let i = 0; i < args.length ; i++) {
+        tot += args[i]
+    }
+
+    return tot
+}
+
+console.log(somaInfinita(1,2,3,4,5,6,7))
+console.log(somaInfinita(1,2,7))
+
+// for of
+
+
+const somaInfinita2 = (...args) => {
+    let tot = 0
+
+    for(num of args) {
+        tot += num
+    }
+
+    return tot
+}
+
+console.log(somaInfinita2(1,2,3,4,5,6,7))
+console.log(somaInfinita2(1,2,7))
+
+
+// destructuring em Objetos
+
+const userD = {
+    firstName: 'Wender',
+    lastName: 'Queiroz',
+    job: 'Programador'
+}
+
+const { firstName, lastName, job} = userD
+
+console.log(firstName, lastName, job)
+
+// renomear Variaveis
+
+const {firstName: primeiroNome} = userD
+
+
+console.log(firstName)
+
+// // destructuring em Arrays
+
+const myList = ['Avião', 'Submarino', 'Carro']
+
+const [veiculoA, veiculoB, veiculoC] = myList
+
+console.log(veiculoA, veiculoB, veiculoC)
+
+
+//JSON
+
+const myJSon = '{"name": "Mathues", "age": 31, "skills":["Python","JavaScript","JAVA"]}'
+
+console.log(myJSon)
+console.log(typeof myJSon)
+
+// JSON para Objeto e Objeto para JSON (JSON.parse() JSON.stringify())
+
+const myObj = JSON.parse(myJSon)
+
+console.log(myObj)
+console.log(typeof myObj)
+
+const myString = JSON.stringify(myObj)
+
+console.log(myString)
+console.log(typeof myString)
+

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POO</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        :root {
+            --primary-dark: #1a1a1a;
+            --primary-hover: aquamarine;
+            --vermelho: rgba(255, 0, 0, 0.5);
+            --vermelho-hover: #ff0000;
+            --verde: rgba(0, 128, 0, 0.47);
+            --verde-hover: #008000;
+            --text-light: #fff;
+            --text-dark: #000;
+        }
+
+        /* Layout geral */
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: lightgrey;
+            padding: 1rem;
+        }
+
+        /* Container principal */
+        main {
+            width: 100%;
+            max-width: 960px;
+            min-height: 80vh;
+            margin: 0.5rem;
+            padding: 1rem;
+            background-color: rgba(211, 211, 211, 0.78);
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.46), -2px -2px 5px rgba(0, 0, 0, 0.46);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+        }
+
+        /* Tipografia e espaçamento */
+        h1,
+        p,
+        button {
+            margin-bottom: 1rem;
+        }
+
+        hr {
+            border: 1px solid black;
+            width: 80%;
+            margin-bottom: 5px;
+        }
+
+        /* Botões gerais */
+        button {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            border: none;
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.4s, color 0.4s, transform 0.3s;
+        }
+
+        button:hover {
+            background-color: var(--primary-hover);
+            color: var(--text-dark);
+            transform: scale(1.05);
+        }
+
+        /* Botões com classes personalizadas */
+        .Vermelho {
+            background-color: var(--vermelho);
+            color: var(--text-dark);
+        }
+
+        .Vermelho:hover {
+            background-color: var(--vermelho-hover);
+            color: var(--text-light);
+        }
+
+        .Verde {
+            background-color: var(--verde);
+            color: var(--text-dark);
+        }
+
+        .Verde:hover {
+            background-color: var(--verde-hover);
+            color: var(--text-light);
+        }
+    </style>
+    <script src="POO.js" defer></script>
+</head>
+
+<body>
+    <h1>Programação a Objetos</h1>
+    
+</body>
+
+</html>
