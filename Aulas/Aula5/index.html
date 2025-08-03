@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang=pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        :root {
+            --primary-dark: #1a1a1a;
+            --primary-hover: aquamarine;
+            --vermelho: rgba(255, 0, 0, 0.5);
+            --vermelho-hover: #ff0000;
+            --verde: rgba(0, 128, 0, 0.47);
+            --verde-hover: #008000;
+            --text-light: #fff;
+            --text-dark: #000;
+        }
+
+        /* Layout geral */
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: lightgrey;
+            padding: 1rem;
+        }
+
+        /* Container principal */
+        main {
+            width: 100%;
+            max-width: 960px;
+            min-height: 80vh;
+            margin: 0.5rem;
+            padding: 1rem;
+            background-color: rgba(211, 211, 211, 0.78);
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.46), -2px -2px 5px rgba(0, 0, 0, 0.46);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+        }
+
+        /* Tipografia e espaçamento */
+        h1,
+        h3,
+        p,
+        button {
+            margin-bottom: 1rem;
+        }
+
+        hr {
+            border: 1px solid black;
+            width: 80%;
+            margin-bottom: 5px;
+        }
+
+        /* Botões gerais */
+        button {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            border: none;
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.4s, color 0.4s, transform 0.3s;
+        }
+
+        button:hover {
+            background-color: var(--primary-hover);
+            color: var(--text-dark);
+            transform: scale(1.05);
+        }
+
+        /* Botões com classes personalizadas */
+        .Vermelho {
+            background-color: var(--vermelho);
+            color: var(--text-dark);
+        }
+
+        .Vermelho:hover {
+            background-color: var(--vermelho-hover);
+            color: var(--text-light);
+        }
+
+        .Verde {
+            background-color: var(--verde);
+            color: var(--text-dark);
+        }
+
+        .Verde:hover {
+            background-color: var(--verde-hover);
+            color: var(--text-light);
+        }
+    </style>
+    <script src="index.js" defer></script>
+</head>
+
+<body>
+    <h1>Programação assíncrona com JS</h1>
+    <p>* Utilizada quando precisamos esperar uma resposta que pode ser não imediata. As execuções pode não ocorrer em forma de fila mas sim ao seu tempo,  codigo pode dar continuidade e depois voltar quando a resposta anterior voltar.</p>
+
+    <h3>Função setTimeout</h3>
+    <p>* Executa uma vez de acordo com o tempo de espera definido</p>
+    <h3>Função setInterval</h3>
+    <p>* Executa repetidamente de acordo com o tempo de espera definido</p>
+
+    <h3>Promises</h3>
+    <p>* Objeto que representa a finalização ou falha de uma operação assíncrona</p>
+    <p>* Pode estar em 3 estados: pendente, resolvida ou rejeitada</p>
+    <p>* Utiliza os métodos .then() e .catch() para lidar com o resultado ou erro da operação</p>
+    <h3>Promise</h3>
+    <h3>.then</h3>
+    <h3>.cath</h3>
+    <h3>.resolve()</h3>
+    <h3>.reject</h3>
+    <h3>.all</h3>
+
+    <h2>Async Functions</h2>
+    <p>* Sintaxe mais simples para trabalhar com Promises</p>
+    <p>* Utiliza a palavra-chave async antes da função para indicar que ela retorna uma Promise</p>
+    <p>* Dentro da função, pode-se usar await para esperar a resolução de uma Promise</p>
+    <h2>await</h2>
+    <p>* Pausa a execução da função até que a Promise seja resolvida</p>
+    <p>* Pode ser usado apenas dentro de funções assíncronas</p>
+
+    <h3>Generators</h3>
+    <p>* Funções que podem ser pausadas e retomadas, permitindo controle sobre a execução</p>
+    <p>* Utiliza a palavra-chave yield para pausar a execução e retornar um valor</p>
+    <p>* Permite criar iteradores personalizados</p>
+    <h3>yield</h3>
+    <p>* Pausa a execução da função e retorna um valor</p>
+    <p>* A execução pode ser retomada posteriormente, continuando de onde parou</p>
+    <h3>Iterators</h3>
+    <p>* Objetos que implementam o protocolo de iteração, permitindo percorrer uma coleção de valores</p>
+    <p>* Possuem um método next() que retorna o próximo valor da coleção</p >
+    <p>* Podem ser usados em loops for...of, spread operator e outras construções que esperam iteradores</p>
+    
+
+
+
+
+</body>
+
+</html>
