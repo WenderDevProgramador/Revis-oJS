@@ -1,0 +1,93 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fonte elegante */
+body {
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(to right, #f7f7f7, #eaeaea);
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Cabeçalho */
+header {
+    background-color: #1a73e8;
+    color: white;
+    padding: 1.5rem 2rem;
+}
+
+
+
+/* Conteúdo principal */
+#main-container {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.product {
+    background-color: rgb(92, 92, 92);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    text-align: center;
+    width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+button {
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #155ab6;
+}
+
+
+
+
+
+/* Rodapé */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #1a73e8;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    z-index: 1000;
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    header,
+    #main-container {
+        padding: 1rem;
+    }
+
+    #title {
+        font-size: 1.6rem;
+    }
+}
