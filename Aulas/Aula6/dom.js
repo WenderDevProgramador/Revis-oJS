@@ -87,4 +87,41 @@ firstLink.setAttribute('href', '#')
 console.log(firstLink.getAttribute('href'))
 
 
+// altura e largura
 
+const footer = document.querySelector('footer')
+console.log(footer.clientHeight) // Altura do elemento
+console.log(footer.clientWidth) // Largura do elemento
+console.log(footer.offsetHeight) // Altura do elemento + padding + border
+console.log(footer.offsetWidth) // Largura do elemento + padding + border
+
+
+// posição do elemento
+
+const product1 = product
+console.log(product1.getBoundingClientRect()) // Mostra a posição do elemento em relação à viewport
+
+// style do elemento
+product1.style.color = '' // Altera a cor do texto
+product1.style.backgroundColor = '' // Altera a cor de fundo
+product1.style.padding = '' // Adiciona padding ao elemento
+
+// HTMLCollection e NodeList são coleções de elementos retornadas por métodos como getElementsByClassName, getElementsByTagName (HTMLCollection) e querySelectorAll (NodeList). Ambas permitem acessar e manipular múltiplos elementos do DOM, mas possuem algumas diferenças:
+
+// HTMLCollection é uma coleção "ao vivo", ou seja, se o DOM for alterado, a coleção refletirá essas mudanças automaticamente. Já NodeList pode ser "estática" (como a retornada por querySelectorAll), não refletindo alterações subsequentes no DOM.
+// HTMLCollection só pode conter elementos, enquanto NodeList pode conter qualquer tipo de nó (elementos, textos, comentários, etc.).
+// HTMLCollection não possui métodos como forEach, enquanto NodeList possui, facilitando a iteração sobre seus itens.
+// Exemplo de iteração em NodeList  
+
+const allProducts = document.querySelectorAll('.product')
+allProducts.forEach(item => {
+    item.style.color = ''
+})
+
+// Exemplo de iteração em HTMLCollection
+const allProductsHTML = document.getElementsByClassName('product')
+
+
+for(let item of allProductsHTML) {
+    item.style.backgroundColor = ''
+}
