@@ -43,7 +43,7 @@ header {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-button {
+button, #event-sub {
     background-color: #1a73e8;
     color: white;
     border: none;
@@ -53,8 +53,14 @@ button {
     transition: background-color 0.3s ease;
 }
 
-button:hover {
+button:hover, #event-sub:hover {
     background-color: #155ab6;
+}
+
+#btn-container {
+    background-color: lightgray;
+    padding: 3rem;
+    border-radius: 10px;
 }
 
 
