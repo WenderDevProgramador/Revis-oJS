@@ -156,11 +156,22 @@ const debounce = (func, delay) => {
     let timeoutId;
 
     return (...args) => {
-        clearTimeout(timeoutId);
+        if (timeoutId) {
+            clearTimeout(timeoutId);
+        };
+
         timeoutId = setTimeout(() => {
-            func.apply(this, args);
+            func.apply(args);
         }, delay);
+
+
     };
 }
+
+window.addEventListener('mousemove', debounce(() => {
+    console.log('Executou o evento de mousemove');
+}, 500));
+
+
 
 
