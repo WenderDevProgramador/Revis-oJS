@@ -1,0 +1,138 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Roboto, Helvetica, sans-serif;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #34db7a;
+}
+
+main {
+    min-height: 93.5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.container {
+    background-color: #fff;
+    height: 300px;
+    width: 460px;
+    border-radius: 1rem;
+    padding: 20px;
+    transition: 0.2s;
+}
+
+.container.active {
+    height: 520px;
+}
+
+#qr-header {
+    text-align: center;
+
+}
+
+#qr-header h1 {
+    font-size: 1.8rem;
+
+    margin-bottom: 1rem;
+}
+
+#qr-header p {
+    color: #444;
+    font-size: .9rem;
+}
+
+#qr-form {
+    margin: 20px 15px;
+}
+
+#qr-form input,
+#qr-form button {
+    width: 100%;
+    height: 55px;
+    border: none;
+    border-radius: .7rem;
+    font-size: .9rem;
+    margin-bottom: 1rem;
+}
+
+#qr-form input {
+    border: 1px solid #777;
+    padding: .8rem 1rem;
+}
+
+#qr-form button {
+    background-color: #086824;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: 0.6s;
+}
+
+#qr-form button:hover {
+    opacity: 1;
+}
+
+#qr-code {
+    display: flex;
+    opacity: 0;
+    border: 1px solid #ccc;
+    padding: 30px 0;
+    margin: 20px 15px;
+    justify-content: center;
+    border-radius: 1rem;
+}
+
+.container.active #qr-code {
+    opacity: 1;
+}
+
+
+footer {
+
+    width: 100%;
+    background-color: #222;
+    /* Cor de fundo escura */
+    color: #fff;
+    /* Texto branco */
+    text-align: center;
+
+    padding: 10px 0;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
+    /* Sombra sutil acima do rodapé */
+}
+
+footer p {
+    font-weight: normal;
+    line-height: 1.5rem;
+    font-size: .8rem;
+}
+
+footer a {
+    color: #4CAF50;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+    /* Aplica o peso desde o início */
+    transition: color 0.3s ease;
+    min-width: 6em;
+    /* Garante espaço suficiente para o texto */
+}
+
+footer a:hover {
+    color: #13f31e;
+    text-decoration: underline;
+}
