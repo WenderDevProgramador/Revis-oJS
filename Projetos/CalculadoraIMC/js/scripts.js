@@ -46,6 +46,16 @@ const weightInput = document.querySelector('#weight')
 const calcBtn = document.querySelector('#calc-btn')
 const clearBtn = document.querySelector('#clear-btn')
 
+const imcNumber = document.querySelector('#imc-number span')
+const imcInfo = document.querySelector('#imc-info span')
+
+const backBtn = document.querySelector('#back-btn')
+
+const calcContainer = document.querySelector('#calc-container')
+const resultContainer = document.querySelector('#result-container')
+
+
+
 // Funções 
 createTable = (data) => {
     data.forEach((item) => {
@@ -72,30 +82,46 @@ createTable = (data) => {
 clearInputs = () => {
     heightInput.value = ''
     weightInput.value = ''
+    imcNumber.classList = ''
+    imcInfo.classList = ''
 
 }
 
 validDigits = (text) => text.replace(/[^0-9,]/g, "")
+
+calcImc = (weight, height) => {
+    const imc = (weight / (height * height)).toFixed(1);
+
+
+    return imc;
+
+}
+
+showOrHideResults = () => {
+    calcContainer.classList.toggle('hide')
+    resultContainer.classList.toggle('hide')
+}
+
+
 
 // Inicialização
 
 createTable(data)
 
 
-
 //Eventos
 
 weightInput.addEventListener('input', (e) => {
-        const updatedValue = validDigits(e.target.value)
+    const updatedValue = validDigits(e.target.value)
 
-        e.target.value = updatedValue
-    })
+    e.target.value = updatedValue
+})
 
 heightInput.addEventListener('input', (e) => {
-        const updatedValue = validDigits(e.target.value)
+    const updatedValue = validDigits(e.target.value)
 
-        e.target.value = updatedValue
-    })
+    e.target.value = updatedValue
+})
 
 
 clearBtn.addEventListener('click', (e) => {
@@ -103,4 +129,61 @@ clearBtn.addEventListener('click', (e) => {
     clearInputs()
 })
 
+calcBtn.addEventListener('click', (e) => {
+    e.preventDefault()
+
+    const weight = +weightInput.value.replace(',', '.')
+    const height = +heightInput.value.replace(',', '.')
+
+    if (!weight || !height) return
+
+    const imc = calcImc(weight, height)
+
+    let info
+
+    data.forEach((item) => {
+        if (imc >= item.min && imc <= item.max) {
+            info = item.info
+        }
+    })
+
+    if (!info) return
+
+    imcNumber.innerText = imc
+    imcInfo.innerText = info
+
+    switch (info) {
+        case 'Magreza':
+            imcNumber.classList.add('low')
+            imcInfo.classList.add('low')
+            break
+        case 'Normal':
+            imcNumber.classList.add('good')
+            imcInfo.classList.add('good')
+            break
+        case 'Sobrepeso':
+            imcNumber.classList.add('low')
+            imcInfo.classList.add('low')
+            break
+        case 'Obesidade':
+            imcNumber.classList.add('medium')
+            imcInfo.classList.add('medium')
+            break
+
+        case 'Obesidade grave':
+            imcNumber.classList.add('high')
+            imcInfo.classList.add('high')
+            break
+    }
+
+    showOrHideResults()
+
+
+})
+
+
+backBtn.addEventListener('click', () => {
+    clearInputs()
+    showOrHideResults()
+})
 
