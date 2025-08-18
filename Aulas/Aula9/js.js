@@ -69,3 +69,47 @@ const novoUsers = users.map((user) => {
 console.log(novoUsers)
 console.log(novoUsers.filter((user) => user.qualificação === 'Qualificado'))
 
+
+// Classes 
+
+class Products {
+    constructor(name, price) {
+        this.name = name
+        this.price = price
+    }
+
+
+    productWithDiscount(discount) {
+        return this.price * ((100 - discount) / 100)
+    }
+
+
+}
+
+const shirt = new Products('Camisa gola V', 55)
+
+console.log(shirt)
+console.log(shirt.productWithDiscount(10))
+console.log(shirt.productWithDiscount(15))
+
+// Herança
+
+class ProductWithAtributes extends Products {
+    constructor(name, price , colors) {
+        super(name, price)
+        this.colors = colors
+    }
+
+    showColors() {
+        console.log(`As cores são: `)
+        this.colors.forEach((color) => {
+            console.log(color)
+        })
+    }
+}
+
+const hat = new ProductWithAtributes('Chapeu', 29.99, ['Preto', 'Vermelho', 'Azul', 'Verde'])
+
+console.log(hat)
+
+console.log(hat.showColors())
