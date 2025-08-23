@@ -44,6 +44,24 @@ main {
     padding: .3rem;
 }
 
+.dados {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: .3rem;
+    border-radius: 1rem;
+    background-color: #333;
+    color: #fff;
+    margin: 1rem;
+    padding: 1rem;
+}
+
+hr {
+
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
 button {
     padding: 1rem;
     border-radius: 1rem;

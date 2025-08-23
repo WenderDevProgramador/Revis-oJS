@@ -5,9 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Axios</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     <script src="index.js" defer></script>
 </head>
 <body>
-    
+    <header>
+        <h1>Axios</h1>
+    </header>
+
+    <main>
+        <h2>Oque é o Axios?</h2>
+        <P>É uma biblioteca de JS para <strong>requisições HTTP</strong></P>
+        <p>Usamos para trabalhar com APIs e requisições assíncrona</p>
+
+        <p>Conversão automatica do JSON diferente do fetch</p>
+
+        <p>Tendencia do mercado é migrar aos poucos para o <strong>fetch</strong></p>
+        <hr>
+        <div>
+            <button id="ver">Ver dados</button>
+            <button id="ocutar">Ocutar dados</button>
+        </div>
+
+        <div id="verDados">
+
+        </div>
+
+        <h3>Configurando os headers</h3>
+        <p>São configurados no momento da requisição</p>
+
+        <h2>Insira um novo POST:</h2>
+
+        <form id="post-form">
+            <div>
+                <input type="text" name="title" id="title" placeholder="Digite um título">
+            </div>
+
+            <div>
+                <textarea  id="body" cols="30" rows="10"></textarea>
+            </div>
+            <input type="submit" value="Criar post">
+        </form>
+        <hr>
+
+        <h3>Global Instance do Axios</h3>
+    </main>
+
+    <footer>
+        <p>Aula de axios</p>
+    </footer>
 </body>
 </html>
