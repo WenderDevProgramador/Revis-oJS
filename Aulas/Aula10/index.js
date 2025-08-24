@@ -25,7 +25,6 @@ const getData = async () => {
     }
 }
 
-getData()
 
 const btnV = document.querySelector('#ver')
 const btnO = document.querySelector('#ocutar')
