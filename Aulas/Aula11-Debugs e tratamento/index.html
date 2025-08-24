@@ -6,7 +6,7 @@
     <title>Debug e tratamento de erro</title>
 
     <link rel="stylesheet" href="style.css">
-    <script src="index.js"></script>
+    <script src="index.js" defer></script>
 
 </head>
 <body>
@@ -23,6 +23,25 @@
         <p><strong>console.log():</strong>Usamos em pontos estrategicos do codigo para vizualizar dados que podem está confusos</p> <p>ou identificar aonde o codigo apresenta o erro e para de rodar.</p>
 
         <p><strong>Método de debug "debugger"</strong>Faz o código parar no momento do erro.</p>
+
+        <h2>Tratamento de erros</h2>
+        <p><strong>Tratando por funções:</strong>Por exemplo criar uma função para verificar se o input entregou um valor valido como número ou string.</p> <p>Uma forma de evitar um erro.</p>
+
+        <form id="form">
+            <input id="number" type="text" placeholder="Digite um número">
+            <button type="submit" id="enviar">Enviar</button>
+        </form>
+
+        <hr>
+
+        <h2>Exceptions</h2>
+        <p>São erros que podemos gerar para outros programadores vizualizar oque está acontecendo.</p>
+
+        <h2>Try e catch</h2>
+
+        <h2>Assertions</h2>
+
+
 
     </main>
 
