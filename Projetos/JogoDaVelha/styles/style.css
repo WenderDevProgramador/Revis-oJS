@@ -144,10 +144,11 @@ footer a{
     font-weight: bold;
     text-decoration: none;
     color: #000;
+    transition: .8s;
 }
 
 footer a:hover {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
 }
 
 
