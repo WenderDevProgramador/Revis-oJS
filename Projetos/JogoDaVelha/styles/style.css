@@ -76,9 +76,9 @@ h1 {
     margin-top: 1.06rem;
 }
 
-/* .hide{
+.hide {
     display: none !important;
-} */
+}
 
 
 #scoreboard-container {
@@ -118,6 +118,7 @@ h2 {
     position: absolute;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 5rem;
     left: 0;
     right: 0;
     top:9.37rem;
@@ -126,7 +127,7 @@ h2 {
     background-color: #000;
     color: #fff;
     padding: 1.25rem;
-    display: none;
+    
 
 }
 
