@@ -1,253 +1,248 @@
-"use strict"
+"use strict";
 
-let x = document.querySelector('.x')
-let o = document.querySelector('.o')
+// Templates (mantidos no DOM, apenas clonados)
+const xTemplate = document.querySelector('.x');
+const oTemplate = document.querySelector('.o');
 
-let boxes = document.querySelectorAll('.box')
+// Elementos
+const boxes = document.querySelectorAll('.box');
+const buttons = document.querySelectorAll('#buttons-container button');
+const messageContainer = document.querySelector('#message');
+const messageText = document.querySelector('#messagep');
+const scoreBoardX = document.querySelector('#scoreboard-1');
+const scoreBoardO = document.querySelector('#scoreboard-2');
 
-let buttons = document.querySelector('#buttons-container button')
-let messageContainer = document.querySelector('#message')
-let messageText = document.querySelector('#messagep')
+let secondPlayer = null;       // 'ai-player' ou outro id de 2 jogadores
+let currentPlayer = 'x';       // 'x' começa
+let boardLocked = false;       // trava cliques enquanto a CPU joga
+let cpuTimeoutId = null;       // evita jogada tardia da CPU após reset
+let messageHideTimeout = null; // evita sumiço prematuro de mensagens
 
+// Padrões de vitória (índices do NodeList boxes)
+const winPatterns = [
+    [0, 1, 2], [3, 4, 5], [6, 7, 8], // linhas
+    [0, 3, 6], [1, 4, 7], [2, 5, 8], // colunas
+    [0, 4, 8], [2, 4, 6]             // diagonais
+];
 
-let secondPlayer;
+// Inicialização
+init();
 
+function init() {
+    boxes.forEach(box => {
+        box.addEventListener('click', () => handleBoxClick(box));
+    });
 
-// Contador de jogadas 
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            secondPlayer = btn.id;
+            // Esconde os botões
+            buttons.forEach(b => b.style.display = 'none');
+            // Mostra o tabuleiro
+            setTimeout(() => {
+                const container = document.querySelector('#container');
+                container.classList.remove('hide');
+            }, 300);
+        });
+    });
 
-let player1 = 0
-let player2 = 0
-
-// adicionando o evento de click aos boxes
-
-
-
-for (let i = 0; i < boxes.length; i++) {
-
-    let el;
-
-    boxes[i].addEventListener('click', function () {
-        if (player1 === player2) {
-            // x
-
-            el = x;
-        } else {
-            // o
-
-            el = o;
-        }
-
-        // Verifica se já tem x ou O
-
-
-        if (this.children.length === 0) {
-            let cloneEl = el.cloneNode(true)
-
-            this.appendChild(cloneEl)
-
-            // Computar jogadas
-
-            if (player1 === player2) {
-                player1++
-            } else {
-                player2++
-            }
-
-            // Checar quem ganhou 
-
-            checkWinCondition()
-        }
-    })
+    // Normaliza placar se vier vazio
+    if (isNaN(parseInt(scoreBoardX.textContent))) scoreBoardX.textContent = '0';
+    if (isNaN(parseInt(scoreBoardO.textContent))) scoreBoardO.textContent = '0';
 }
 
-// Evento para saber se é dois players ou IA
+// Clique do jogador humano
+function handleBoxClick(box) {
+    // Impede múltiplos cliques durante jogada da CPU
+    if (boardLocked) return;
 
-for(let i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener('click', function(){
+    // Em modo CPU, só humano joga quando for 'x'
+    if (secondPlayer === 'ai-player' && currentPlayer !== 'x') return;
 
-        secondPlayer = this.get
-    })
+    // Casa ocupada não recebe jogada
+    if (box.children.length > 0) return;
+
+    placeMark(box, currentPlayer);
+    nextTurn();
 }
 
+// Insere a marca no tabuleiro
+function placeMark(box, player) {
+    const tpl = player === 'x' ? xTemplate : oTemplate;
+    box.appendChild(tpl.cloneNode(true));
+}
 
-// ver quem ganhou  
-
-function checkWinCondition() {
-    let b1 = document.querySelector('#block-1')
-    let b2 = document.querySelector('#block-2')
-    let b3 = document.querySelector('#block-3')
-    let b4 = document.querySelector('#block-4')
-    let b5 = document.querySelector('#block-5')
-    let b6 = document.querySelector('#block-6')
-    let b7 = document.querySelector('#block-7')
-    let b8 = document.querySelector('#block-8')
-    let b9 = document.querySelector('#block-9')
-
-    // horizontal 1
-    if (b1.children.length > 0 && b2.children.length > 0 && b3.children.length > 0) {
-        let b1Child = b1.children[0].className;
-        let b2Child = b2.children[0].className;
-        let b3Child = b3.children[0].className;
-
-        if (b1Child === 'x' && b2Child === 'x' && b3Child === 'x') {
-            declarerWinner('x')
-        } else if (b1Child === 'o' && b2Child === 'o' && b3Child === 'o') {
-            declarerWinner('o')
-        }
+// Avança o turno: verifica estado, alterna jogador e dispara CPU se necessário
+function nextTurn() {
+    const state = getGameState();
+    if (state !== null) {
+        endGame(state);
+        return;
     }
 
-    // horizontal 2
-    if (b4.children.length > 0 && b5.children.length > 0 && b6.children.length > 0) {
-        let b4Child = b4.children[0].className;
-        let b5Child = b5.children[0].className;
-        let b6Child = b6.children[0].className;
+    // Alterna
+    currentPlayer = currentPlayer === 'x' ? 'o' : 'x';
 
-        if (b4Child === 'x' && b5Child === 'x' && b6Child === 'x') {
-            declarerWinner('x')
-        } else if (b4Child === 'o' && b5Child === 'o' && b6Child === 'o') {
-            declarerWinner('o')
-        }
-    }
-
-    // horizontal 3
-    if (b7.children.length > 0 && b8.children.length > 0 && b9.children.length > 0) {
-        let b7Child = b7.children[0].className;
-        let b8Child = b8.children[0].className;
-        let b9Child = b9.children[0].className;
-
-        if (b7Child === 'x' && b8Child === 'x' && b9Child === 'x') {
-            declarerWinner('x')
-        } else if (b7Child === 'o' && b8Child === 'o' && b9Child === 'o') {
-            declarerWinner('o')
-        }
-    }
-
-    // vertical 1
-    if (b1.children.length > 0 && b4.children.length > 0 && b7.children.length > 0) {
-        let b1Child = b1.children[0].className;
-        let b4Child = b4.children[0].className;
-        let b7Child = b7.children[0].className;
-
-        if (b1Child === 'x' && b4Child === 'x' && b7Child === 'x') {
-            declarerWinner('x')
-        } else if (b1Child === 'o' && b4Child === 'o' && b7Child === 'o') {
-            declarerWinner('o')
-        }
-    }
-
-    // vertical 2
-    if (b2.children.length > 0 && b5.children.length > 0 && b8.children.length > 0) {
-        let b2Child = b2.children[0].className;
-        let b5Child = b5.children[0].className;
-        let b8Child = b8.children[0].className;
-
-        if (b2Child === 'x' && b5Child === 'x' && b8Child === 'x') {
-            declarerWinner('x')
-        } else if (b2Child === 'o' && b5Child === 'o' && b8Child === 'o') {
-            declarerWinner('o')
-        }
-    }
-
-    // vertical 3
-    if (b3.children.length > 0 && b6.children.length > 0 && b9.children.length > 0) {
-        let b3Child = b3.children[0].className;
-        let b6Child = b6.children[0].className;
-        let b9Child = b9.children[0].className;
-
-        if (b3Child === 'x' && b6Child === 'x' && b9Child === 'x') {
-            declarerWinner('x')
-        } else if (b3Child === 'o' && b6Child === 'o' && b9Child === 'o') {
-            declarerWinner('o')
-        }
-    }
-
-    // diagonal principal
-    if (b1.children.length > 0 && b5.children.length > 0 && b9.children.length > 0) {
-        let b1Child = b1.children[0].className;
-        let b5Child = b5.children[0].className;
-        let b9Child = b9.children[0].className;
-
-        if (b1Child === 'x' && b5Child === 'x' && b9Child === 'x') {
-            declarerWinner('x')
-        } else if (b1Child === 'o' && b5Child === 'o' && b9Child === 'o') {
-            declarerWinner('o')
-        }
-    }
-
-    // diagonal secundária
-    if (b3.children.length > 0 && b5.children.length > 0 && b7.children.length > 0) {
-        let b3Child = b3.children[0].className;
-        let b5Child = b5.children[0].className;
-        let b7Child = b7.children[0].className;
-
-        if (b3Child === 'x' && b5Child === 'x' && b7Child === 'x') {
-            declarerWinner('x')
-        } else if (b3Child === 'o' && b5Child === 'o' && b7Child === 'o') {
-            declarerWinner('o')
-        }
-    }
-
-    // Deu velha
-
-    let counter = 0
-
-    for(let i = 0; i < boxes.length; i++) {
-        if(boxes[i].children[0] != undefined) {
-            counter++
-        }
-
-        
-    }
-
-    if(counter === 9) {
-        // Deu velha
-        declarerWinner('Velha')
+    // Se for CPU e é a vez do 'o', joga
+    if (secondPlayer === 'ai-player' && currentPlayer === 'o') {
+        boardLocked = true;
+        // Pequeno delay para UX
+        cpuTimeoutId = setTimeout(() => {
+            cpuMove();
+            boardLocked = false;
+            nextTurn(); // após CPU jogar, checa estado e alterna
+        }, 500);
     }
 }
 
+// Avalia estado do jogo: 'x', 'o', 'Velha' ou null (em andamento)
+function getGameState() {
+    const marks = Array.from(boxes).map(b => {
+        const el = b.children[0];
+        if (!el) return '';
+        if (el.classList.contains('x')) return 'x';
+        if (el.classList.contains('o')) return 'o';
+        return ''; // fallback
+    });
 
-// Limpa o jogo , declara o vencedor e atualiza o placar
+    // Vitória
+    for (const [a, b, c] of winPatterns) {
+        if (marks[a] && marks[a] === marks[b] && marks[a] === marks[c]) {
+            return marks[a]; // 'x' ou 'o'
+        }
+    }
 
-function declarerWinner(winner) {
-    
-    let scoreBoardX = document.querySelector('#scoreboard-1')
-    let scoreBoardO = document.querySelector('#scoreboard-2')
-    let msg = ''
+    // Empate
+    if (marks.every(m => m)) return 'Velha';
 
+    return null; // jogo continua
+}
 
-    if (winner === 'x') {
-        scoreBoardX.textContent = parseInt(scoreBoardX.textContent) + 1
-        msg = 'O jogador 1 venceu'
-    } else if(winner === 'o'){
-        scoreBoardO.textContent = parseInt(scoreBoardO.textContent) + 1
-        msg = 'O jogador 2 venceu!'
+// Finaliza rodada: mostra mensagem, atualiza placar e reseta
+function endGame(result) {
+    // Cancela qualquer jogada pendente da CPU
+    if (cpuTimeoutId) {
+        clearTimeout(cpuTimeoutId);
+        cpuTimeoutId = null;
+    }
+
+    let msg = '';
+    if (result === 'x') {
+        scoreBoardX.textContent = (parseInt(scoreBoardX.textContent) || 0) + 1;
+        msg = 'O jogador 1 venceu';
+    } else if (result === 'o') {
+        scoreBoardO.textContent = (parseInt(scoreBoardO.textContent) || 0) + 1;
+        msg = 'O jogador 2 venceu!';
     } else {
-        msg = 'Deu velha!'
+        msg = 'Deu velha!';
     }
 
-    // Exibir mensagem
-    
-
-    messageText.textContent = msg
-    messageContainer.classList.remove('hide')
-
-    // Esconder mensagem
-
-    setTimeout(() => {
-        messageContainer.classList.add('hide')
-    }, 4000)
-
-    // Zerar as jogadas
-    player1 = 0
-    player2 = 0
-
-    // removendo as marcações 
-
-    let boxesToRemove = document.querySelectorAll('.box div')
-
-    for(let i = 0; i < boxesToRemove.length ; i++) {
-        boxesToRemove[i].parentNode.removeChild(boxesToRemove[i])
-    }
-
+    showMessage(msg);
+    resetBoard();
 }
 
+// CPU: joga 'o'
+function cpuMove() {
+    const empty = getEmptyBoxes();
+    if (empty.length === 0) return;
+
+    // 1) Tenta ganhar
+    const winMove = findBestMove('o');
+    if (winMove) {
+        placeMark(winMove, 'o');
+        return;
+    }
+
+    // 2) Tenta bloquear vitória do 'x'
+    const blockMove = findBestMove('x');
+    if (blockMove) {
+        placeMark(blockMove, 'o');
+        return;
+    }
+
+    // 3) Caso contrário, joga aleatório
+    const randomBox = empty[Math.floor(Math.random() * empty.length)];
+    placeMark(randomBox, 'o');
+}
+
+// Retorna casas vazias
+function getEmptyBoxes() {
+    return Array.from(boxes).filter(b => b.children.length === 0);
+}
+
+// Procura uma jogada que feche uma linha para 'player' ('x' ou 'o')
+// Retorna o elemento .box da jogada, ou null
+function findBestMove(player) {
+    for (const [a, b, c] of winPatterns) {
+        const trio = [boxes[a], boxes[b], boxes[c]];
+        const marks = trio.map(bx => {
+            const el = bx.children[0];
+            if (!el) return '';
+            if (el.classList.contains('x')) return 'x';
+            if (el.classList.contains('o')) return 'o';
+            return '';
+        });
+
+        const countPlayer = marks.filter(m => m === player).length;
+        const countEmpty = marks.filter(m => m === '').length;
+
+        // Se tem dois do 'player' e um vazio, essa é a jogada
+        if (countPlayer === 2 && countEmpty === 1) {
+            const emptyIndex = marks.findIndex(m => m === '');
+            return trio[emptyIndex];
+        }
+    }
+    return null;
+}
+
+// Mensagens com controle de timeout
+function showMessage(text) {
+    messageText.textContent = text;
+    messageContainer.classList.remove('hide');
+    if (messageHideTimeout) clearTimeout(messageHideTimeout);
+    messageHideTimeout = setTimeout(() => {
+        messageContainer.classList.add('hide');
+    }, 3000);
+}
+
+// Limpa tabuleiro e estado de rodada
+function resetBoard() {
+    // Remove marcas
+    document.querySelectorAll('.box div').forEach(el => el.remove());
+
+    // Reseta turno e libera tabuleiro
+    currentPlayer = 'x';
+    boardLocked = false;
+
+    // Garante que nenhum timeout órfão fique ativo
+    if (cpuTimeoutId) {
+        clearTimeout(cpuTimeoutId);
+        cpuTimeoutId = null;
+    }
+}
+
+// Botão de voltar ao início
+const btnVoltar = document.querySelector('#btn-voltar');
+
+btnVoltar.addEventListener('click', () => {
+    // Cancela jogada pendente da CPU
+    if (cpuTimeoutId) {
+        clearTimeout(cpuTimeoutId);
+        cpuTimeoutId = null;
+    }
+
+    // Limpa tabuleiro
+    resetBoard();
+
+    // (Opcional) Zera placar
+    // scoreBoardX.textContent = '0';
+    // scoreBoardO.textContent = '0';
+
+    // Esconde tabuleiro e mostra botões iniciais
+    document.querySelector('#container').classList.add('hide');
+    buttons.forEach(b => b.style.display = 'inline-block');
+
+    // Reseta estado do jogo
+    currentPlayer = 'x';
+    secondPlayer = null;
+});

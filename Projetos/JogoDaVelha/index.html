@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <script src="js/index.js" defer></script>
-
     <link rel="stylesheet" href="styles/style.css">
+
     <title>Jogo da velha JS</title>
 </head>
 
@@ -18,13 +18,12 @@
     </header>
 
     <div id="buttons-container">
-
         <button id="2-players">2 jogadores</button>
         <button id="ai-player">Contra Maquina</button>
-
     </div>
 
     <div id="container" class="hide">
+        <!-- Tabuleiro -->
         <div class="box" id="block-1"></div>
         <div class="box" id="block-2"></div>
         <div class="box" id="block-3"></div>
@@ -35,8 +34,10 @@
         <div class="box" id="block-8"></div>
         <div class="box" id="block-9"></div>
 
+        <!-- Placar -->
         <div id="scoreboard-container">
             <h2>Placar:</h2>
+ 
             <span class="score-box">
                 <span id="x-scoreboard">X</span>:
                 <span id="scoreboard-1">0</span>
@@ -46,21 +47,35 @@
                 <span id="o-scoreboard"></span>:
                 <span id="scoreboard-2">0</span>
             </span>
+        </div>
 
+        <!-- Controles -->
+        
+        <div id="return-container">
+            <button id="btn-voltar" class="btn-voltar">Voltar ao Início</button>
         </div>
     </div>
 
+    <!-- Templates para clonagem -->
     <div class="hide">
-<div class="x">X</div>
-<div class="o"></div>
+        <div class="x">X</div>
+        <div class="o"></div>
     </div>
 
+    <!-- Mensagens -->
     <div id="message" class="hide">
         <p id="messagep"></p>
     </div>
 
-
-    <footer><p>Feito por <a href="https://github.com/WenderDevProgramador?tab=repositories" target="_blank" rel="noopener noreferrer">Wender Queiroz</a></p></footer>
+    <footer>
+        <p>
+            Feito por
+            <a href="https://github.com/WenderDevProgramador?tab=repositories" target="_blank"
+                rel="noopener noreferrer">
+                Wender Queiroz
+            </a>
+        </p>
+    </footer>
 
 </body>
 

@@ -1,3 +1,4 @@
+/* Reset e base */
 * {
     box-sizing: border-box;
     padding: 0;
@@ -6,153 +7,232 @@
 
 body {
     text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #1a1a1a, #333);
+    color: #f0f0f0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
+/* Títulos */
 h1 {
-    font-size: 2.8rem;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin: 1rem 0;
+    color: #ffdd57;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+    animation: fadeInDown 1s ease;
 }
 
-
+/* Container de botões */
 #buttons-container button {
     border: none;
-    padding: 10px 15px;
+    padding: 10px 20px;
     font-weight: bold;
     margin: 0 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.4s ease;
+    background: linear-gradient(135deg, #4cafef, #2196f3);
+    color: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
+#buttons-container button:hover {
+    transform: scale(1.1);
+    background: linear-gradient(135deg, #42a5f5, #1e88e5);
+}
+
+/* Container do jogo */
 #container {
     display: flex;
-    width: 300px;
-    margin: 0;
-    flex-direction: row;
+    width: 90vw;
+    max-width: 400px;
     flex-wrap: wrap;
     position: relative;
-    margin-left: auto;
-    margin-right: auto;
-
+    margin: 2rem auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.5);
 }
 
+/* Quadrados do tabuleiro */
 .box {
-    height: 100px;
-    border: 5px solid #000;
+    height: 120px;
     flex: 1 1 33%;
-
+    border: 3px solid #444;
+    background: rgba(20, 20, 20, 0.9);
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-#block-1 , #block-2 , #block-3  {
-    border-top: none;
+.box:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: scale(1.05);
 }
 
-#block-1 , #block-4 , #block-7  {
-    border-left: none;
-}
+/* Bordas do jogo */
+#block-1, #block-2, #block-3 { border-top: none; }
+#block-1, #block-4, #block-7 { border-left: none; }
+#block-3, #block-6, #block-9 { border-right: none; }
+#block-7, #block-8, #block-9 { border-bottom: none; }
 
-#block-3 , #block-6 , #block-9  {
-    border-right: none;
-}
-
-
-#block-7 , #block-8 , #block-9  {
-    border-bottom: none;
-}
-
-
+/* Símbolo X */
 .x {
-    font-size: 4rem;
-    color: red;
-    display: inline-block;
-    line-height: 6.25rem;
+    font-size: clamp(2.5rem, 10vw, 4rem);
+    color: #ff4c4c;
+    text-shadow: 2px 2px 10px rgba(255, 76, 76, 0.7);
+    animation: pop 0.4s ease;
 }
 
+/* Símbolo O */
 .o {
-    width: 3.125rem;
-    height: 3.125rem;
-    border: 5px solid green;
+    width: clamp(40px, 15vw, 60px);
+    height: clamp(40px, 15vw, 60px);
+    border: 5px solid #4caf50;
     border-radius: 50%;
     display: inline-block;
-    margin-top: 1.06rem;
+    animation: pop 0.4s ease;
+    box-shadow: 0 0 12px rgba(76, 175, 80, 0.6);
 }
 
+/* Classe ocultar */
 .hide {
     display: none !important;
 }
 
-
+/* Placar */
 #scoreboard-container {
     font-weight: bold;
-    margin-top: 1.87rem;
-    font-size: 1.56rem;
-    position: relative;
-    margin-left: auto;
-    margin-right: auto;
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    animation: fadeIn 1s ease;
 }
 
 h2 {
+    margin-left: 8px;
     margin-bottom: 6px;
 }
 
 .score-box {
-    margin: 0 20px;
+    display: flex;
+    align-items: center;
 }
 
 #x-scoreboard {
-    color: red;
-    margin-right: 3px;
+    color: #ff4c4c;
+    margin-right: 5px;
+    font-size: 1.3rem;
 }
 
 #o-scoreboard {
     display: inline-block;
-    width: 1.125rem;
-    height: 1.125rem;
-    border: 2px solid green;
+    width: 18px;
+    height: 18px;
+    border: 3px solid #4caf50;
     border-radius: 50%;
-    margin-right: 3px;
-
+    margin-right: 5px;
 }
 
-
-#message p {
-    position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 5rem;
-    left: 0;
-    right: 0;
-    top:9.37rem;
-    width: 31.25rem;
-    font-size: 3.12rem;
-    background-color: #000;
-    color: #fff;
-    padding: 1.25rem;
-    
-
-}
-
-footer {
-    flex: 1;
-    margin-top: 1.5rem;
-}
-
-footer p{
-    font-size: 0.6rem;
-}
-
-footer a{
+/* Botão voltar */
+.btn-voltar {
+    margin-top: 20px;
+    margin-left: 20px;
+    padding: 8px 16px;
+    background: linear-gradient(135deg, #e53935, #b71c1c);
+    color: white;
+    border: none;
+    border-radius: 6px;
     cursor: pointer;
     font-weight: bold;
-    text-decoration: none;
-    color: #000;
-    transition: .8s;
+    transition: transform 0.2s ease, background 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
-footer a:hover {
+.btn-voltar:hover {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, #f44336, #c62828);
+}
+
+/* Mensagem de vitória */
+#message p {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: clamp(1.8rem, 6vw, 3rem);
+    background: rgba(0, 0, 0, 0.9);
+    color: #fff;
+    padding: 1.5rem 2rem;
+    border-radius: 10px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.6);
+    animation: fadeInUp 0.6s ease;
+}
+
+#scoreboard-2, #scoreboard-1 {
+    margin-left: 5px;
+}
+
+/* Rodapé */
+footer {
+    flex: 1;
+    margin-top: 2rem;
+    padding: 1rem;
     font-size: 0.8rem;
 }
 
+footer p {
+    font-size: 0.7rem;
+    color: #bbb;
+}
 
+footer a {
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+    color: #ffdd57;
+    transition: color 0.3s ease;
+}
 
+footer a:hover {
+    color: #fff176;
+}
 
+/* Animações */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes pop {
+    0% { transform: scale(0.6); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Responsividade extra */
+@media (max-width: 480px) {
+    .box {
+        height: 80px;
+    }
+    #message p {
+        width: 90%;
+        font-size: 1.5rem;
+    }
+}
