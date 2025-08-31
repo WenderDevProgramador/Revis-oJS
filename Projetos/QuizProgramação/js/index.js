@@ -87,23 +87,46 @@ function init() {
 // Cria uma Pergunta
 
 function createQuestion(i) {
+    // Limpar alternativas anteriores
+    const oldButtons = answersBox.querySelectorAll('button');
+    oldButtons.forEach((btn) => btn.remove());
 
-    // Limpar a questão anterior
-    const olButtons = answersBox.querySelectorAll('button')
+    // Alterar o texto da pergunta
+    const questionText = question.querySelector('#question-text');
+    const questionNumber = question.querySelector('#question-number');
 
-    olButtons.forEach((btn) => {
-        btn.remove();
-    })
+    questionText.textContent = questions[i].question;
+    questionNumber.textContent = i + 1;
 
-    // Alterar o texto da Pergunta
+    // Criar alternativas
+    questions[i].answers.forEach((answer, j) => {
+        const answerTemplate = document.querySelector('.answer-template').cloneNode(true);
 
-    const questionText = question.querySelector('#question-text')
-    const questionNumber = question.querySelector('#question-number')
+        const letterBtn = answerTemplate.querySelector('.btn-letter'); // corrigido
+        const answerText = answerTemplate.querySelector('.question-answer'); // corrigido
 
-    questionText.textContent = question[i].question;
-    questionNumber.textContent = i + 1
+        letterBtn.textContent = letters[j];
+        answerText.textContent = answer.answer;
+        answerTemplate.setAttribute('correct-answer', answer.correct);
+
+        answerTemplate.classList.remove('hide');
+        answerTemplate.classList.remove('answer-template');
+
+        answersBox.appendChild(answerTemplate);
+
+        answerTemplate.addEventListener('click', function() {
+
+        })
+    });
+
+    // Incrementar o número da questão
+
+    actualQuestion++;
+    
+
 
 }
+
 
 
 // Inicialização do quizz
