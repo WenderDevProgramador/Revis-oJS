@@ -234,9 +234,9 @@ btnVoltar.addEventListener('click', () => {
     // Limpa tabuleiro
     resetBoard();
 
-    // (Opcional) Zera placar
-    // scoreBoardX.textContent = '0';
-    // scoreBoardO.textContent = '0';
+    //Zera placar
+    scoreBoardX.textContent = '0';
+    scoreBoardO.textContent = '0';
 
     // Esconde tabuleiro e mostra botões iniciais
     document.querySelector('#container').classList.add('hide');
