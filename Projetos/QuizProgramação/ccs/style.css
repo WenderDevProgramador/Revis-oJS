@@ -7,7 +7,7 @@
 }
 
 body {
-    background-color: #242940;
+    background-color: #1d2857;
     color: #FFF;
     display: flex;
     flex-direction: column;
@@ -21,7 +21,7 @@ body {
 #main-title {
     padding: 40px 0;
     text-align: center;
-    background-color: #2D425A;
+    background-color: #30639d;
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
 }
