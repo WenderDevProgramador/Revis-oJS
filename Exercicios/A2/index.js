@@ -1,12 +1,32 @@
+const inputText = document.querySelector('#cesar');
+const button = document.querySelector('#converter');
+const resultado = document.querySelector('#resultado');
+const numinput = document.querySelector('#num');
 
-const inputText = document.querySelector('#cesar')
-const button = document.querySelector('#converter')
-const resultado = document.querySelector('#resultado')
-const numinput = document.querySelector('#num')
+const decifrar = (inputText, numinput) => {
+    const text = inputText.value;
+    const num = parseInt(numinput.value, 10);
+    const normalizeKey = num % 26;
 
-const arrayAlfa = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
-    'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
-    'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
-    'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
-    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+    return text.split('').map(char => {
+        const code = char.charCodeAt(0);
 
+        // Maiúsculas
+        if (code >= 65 && code <= 90) {
+            return String.fromCharCode(((code - 65 - normalizeKey + 26) % 26) + 65);
+        }
+
+        // Minúsculas
+        if (code >= 97 && code <= 122) {
+            return String.fromCharCode(((code - 97 - normalizeKey + 26) % 26) + 97);
+        }
+
+        // Outros caracteres ficam iguais
+        return char;
+    }).join('');
+};
+
+button.addEventListener('click', () => {
+    const textCifrado = decifrar(inputText, numinput);
+    resultado.innerHTML = `Resultado: ${textCifrado}`;
+});
