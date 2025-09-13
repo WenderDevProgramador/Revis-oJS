@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="index.js" defer></script>
+    <title>Desafio21</title>
+</head>
+
+<body>
+    <header>
+        <h1>Sistema de localização:</h1>
+    </header>
+
+    <main>
+        <h2>Desafio:</h2>
+        <p>Escreva um programa que usa classe que seja capaz de armazenar 3 coordenadas, determinar o setor em relação à estação espacial(coordenada [0,0,0]).</p>
+        <p>Distribuião de setores</p>
+        <ul>
+            <li>Alfa: positivo,positivo,positivo</li>
+            <li>Beta: negativo,positivo,positivo</li>
+            <li>Gama: negativo,negativo,positivo</li>
+            <li>Delta: positivo,negativo,positivo</li>
+            <li>Epsilon: positivo,positivo,negativo</li>
+            <li>Zeta: negativo,positivo,negativo</li>
+            <li>Sigma: negativo,negativo,positivo</li>
+            <li>Ômega: negativo,negativo,negativo</li>
+        </ul>
+        <p>Considere 0 positivo para garantir que um ponto estará apenas em único setor.</p>
+
+
+        <h4>Exemplos são:</h4>
+
+        <div>
+            <b>
+                Entrada: 37,42,15
+                <br>
+                Saída: Alfa
+                Saída distancia: 57.94825277780168
+                
+                <br>
+                <br>
+                Entrada: 144,49,0
+                <br>
+                Saída: Alfa
+                Saída distancia: 152.10851389715174
+                <br>
+
+
+            </b>
+        </div>
+
+        <div>
+            <label for="decifre1">Digite as coordenadas:</label>
+            <input type="text" id="decifre1" placeholder="Ex: 9,9,9">
+
+
+            <button id="converter">Converter</button>
+
+            <div id="resultado">Resultado</div>
+
+        </div>
+
+    </main>
+
+    <footer>
+        Exercicio 21 desafio de javascript - <strong>Sistema de localização</strong>
+    </footer>
+</body>
+
+</html>
